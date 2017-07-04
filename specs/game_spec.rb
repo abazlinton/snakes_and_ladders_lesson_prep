@@ -23,6 +23,20 @@ class GameTest < MiniTest::Test
     assert_equal(20, @game.board.spaces.count)
   end
 
+  def test_player1_starts
+    assert_equal(@game.current_player, @players[0])
+  end
+
+  def test_player2_can_play
+    @game.next_turn
+    assert_equal(@game.current_player, @players[1])
+  end
+
+  def test_player_can_move
+    @game.do_current_player_turn(2)
+    assert_equal(2, @game.players[0].position)
+    assert_equal(@players[1], @game.current_player)
+  end
 
 
 
