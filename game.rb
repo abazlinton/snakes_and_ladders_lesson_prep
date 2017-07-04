@@ -6,13 +6,16 @@ class Game
 
   def initialize(players, board)
     @players = players
+    @current_player_index = 0
     @board = board
-    @current_player = @players[0]
+    @current_player = @players[@current_player_index]
     @winner = nil
   end
 
   def run_next_turn
-    @current_player = @players.rotate[0]
+    @current_player_index += 1
+    @current_player_index = 0 if @current_player_index > ( @players.count - 1 )
+    @current_player = @players[@current_player_index]
   end
 
   def do_current_player_turn(spaces)
@@ -24,11 +27,12 @@ class Game
   end
 
   def check_for_win
-    @winner = @current_player if @current_player.position == ( @board.spaces.count - 1 )
+    @winner = @current_player if @current_player.position >= ( @board.spaces.count - 1 )
   end
 
   def game_over?
     @winner != nil ? true : false
   end
+
 
 end

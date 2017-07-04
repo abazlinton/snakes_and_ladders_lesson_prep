@@ -67,8 +67,14 @@ class GameTest < MiniTest::Test
     assert_equal(false, @game.game_over?)
   end
 
-  def test_game_can_be_won_hit_last_square
+  def test_game_can_be_won__hit_last_square
     @game.do_current_player_turn(19)
+    assert_equal(true, @game.game_over?)
+    assert_equal(@game.players[0], @game.winner)
+  end
+
+  def test_game_can_be_won__over_last_square
+    @game.do_current_player_turn(20)
     assert_equal(true, @game.game_over?)
     assert_equal(@game.players[0], @game.winner)
   end
