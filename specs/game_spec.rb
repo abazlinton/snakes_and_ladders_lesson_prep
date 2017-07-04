@@ -79,10 +79,20 @@ class GameTest < MiniTest::Test
     assert_equal(@game.players[0], @game.winner)
   end
 
+  def test_win_mutiple_turns
+    @game.do_current_player_turn(20)
+    @game.do_current_player_turn(18)
+    @game.do_current_player_turn(10)
+    assert_equal(true, @game.game_over?)
+    assert_equal(@game.players[0], @game.winner)
+  end
+
   def test_current_player_doesnt_change_on_game_over
     @game.do_current_player_turn(19)
     assert_equal(@game.players[0], @game.current_player)
   end
+
+
 
   
 
