@@ -9,7 +9,6 @@ class Player
 
   def move(spaces)
     @position += spaces
-
   end
 
 

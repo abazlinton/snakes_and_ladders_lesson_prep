@@ -9,7 +9,6 @@ class PlayerTest < MiniTest::Test
     @player = Player.new("Alex")
   end
 
-
   def test_player_has_name
     assert_equal("Alex", @player.name)
   end
