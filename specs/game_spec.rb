@@ -10,7 +10,8 @@ class GameTest < MiniTest::Test
   def setup
     player1 = Player.new("Alex")
     player2 = Player.new("John")
-    @players = [player1, player2]
+    player3 = Player.new("Keith")
+    @players = [player1, player2, player3]
     @board = Board.new(20)
     @game = Game.new(@players, @board)
   end
@@ -30,6 +31,19 @@ class GameTest < MiniTest::Test
   def test_player2_can_play
     @game.run_next_turn
     assert_equal(@game.current_player, @players[1])
+  end
+
+  def test_player1_has_2nd_turn
+    @game.do_current_player_turn(1)
+    @game.do_current_player_turn(1)
+    @game.do_current_player_turn(1)
+    assert_equal(@game.current_player, @players[0])
+  end
+
+  def test_player3_can_play
+    @game.do_current_player_turn(1)
+    @game.do_current_player_turn(1)
+    assert_equal(@game.current_player, @players[2])
   end
 
   def test_player_can_move
@@ -57,6 +71,10 @@ class GameTest < MiniTest::Test
     @game.do_current_player_turn(19)
     assert_equal(true, @game.game_over?)
     assert_equal(@game.players[0], @game.winner)
+  end
+
+  def test_current_player_doesnt_change_on_game_over
+    @game.do_current_player_turn(19)
     assert_equal(@game.players[0], @game.current_player)
   end
 
