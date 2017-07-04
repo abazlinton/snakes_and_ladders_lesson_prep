@@ -1,3 +1,4 @@
+require 'pry'
 
 class Game
 
@@ -15,6 +16,8 @@ class Game
 
   def do_current_player_turn(spaces)
     @current_player.move(spaces)
+    jump = @board.spaces[@current_player.position]
+    @current_player.move(jump) if jump != nil 
     self.next_turn
   end
 

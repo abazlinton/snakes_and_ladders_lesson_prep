@@ -38,9 +38,12 @@ class GameTest < MiniTest::Test
     assert_equal(@players[1], @game.current_player)
   end
 
-
-
-
+  def test_game_adjusts_for_jumps
+    @game.board.add_jump(1, 2)
+    @game.do_current_player_turn(1)
+    assert_equal(3, @game.players[0].position)
+    assert_equal(@players[1], @game.current_player)
+  end
 
   
 

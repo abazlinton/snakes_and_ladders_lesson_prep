@@ -28,4 +28,5 @@ class BoardTest < MiniTest::Test
     assert_nil(@board.spaces[19])
   end
 
+
 end
