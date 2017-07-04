@@ -28,5 +28,13 @@ class BoardTest < MiniTest::Test
     assert_nil(@board.spaces[19])
   end
 
+  def test_cannot_add_more_than_one_jump
+    flunk("TODO")
+  end
+
+  def test_jump_does_not_take_you_to_another_jump
+    flunk("TODO")
+  end
+
 
 end
